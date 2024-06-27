@@ -31,7 +31,7 @@ public protocol EventSourceProtocol {
     var readyState: EventSourceState { get }
 
     /// urlSession which EventSource will use for url requests.
-    var urlSession: URLSession { get }
+    var urlSession: URLSession? { get }
 
     /// Method used to connect to server. It can receive an optional lastEventId indicating the Last-Event-ID
     ///
