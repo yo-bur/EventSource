@@ -30,6 +30,9 @@ public protocol EventSourceProtocol {
     /// Current state of EventSource
     var readyState: EventSourceState { get }
 
+    /// urlSession which EventSource will use for url requests.
+    var urlSession: URLSession { get }
+
     /// Method used to connect to server. It can receive an optional lastEventId indicating the Last-Event-ID
     ///
     /// - Parameter lastEventId: optional value that is going to be added on the request header to server.
@@ -90,7 +93,7 @@ open class EventSource: NSObject, EventSourceProtocol, URLSessionDataDelegate {
     private var eventStreamParser: EventStreamParser?
     private var operationQueue: OperationQueue
     private var mainQueue = DispatchQueue.main
-    private var urlSession: URLSession?
+    private(set) public var urlSession: URLSession?
 
     public init(
         url: URL,
